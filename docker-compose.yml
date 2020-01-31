@@ -1,0 +1,11 @@
+version: '2'
+services:
+  node:
+    build: ./docker/node
+    image: phatnguyenuit/node_dev_env
+    container_name: node_development_environment
+    ports:
+      - 3000:3000
+    volumes:
+      - ./sources:/usr/workspace/sources
+    restart: 'no'
