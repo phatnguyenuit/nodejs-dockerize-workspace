@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 services:
   node:
     build: ./docker/node
@@ -8,4 +8,8 @@ services:
       - 3000:3000
     volumes:
       - ./sources:/usr/workspace/sources
-    restart: 'no'
+    restart: "no"
+networks:
+  default:
+    external:
+      name: bridge
