@@ -9,3 +9,29 @@ services:
     volumes:
       - ./sources:/usr/workspace/sources
     restart: 'no'
+    links:
+      - mongo
+  mongo:
+    container_name: node-mongo
+    image: mongo
+    volumes:
+      - db_volume:/data/db
+      - ./backup:/data/backup
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+  admin-mongo:
+    container_name: admin-mongo-container
+    image: 0x59/admin-mongo:latest
+    ports:
+      - '8082:8082'
+    environment:
+      - PORT=8082
+      - CONN_NAME=mongo
+      - DB_HOST=mongo
+    links:
+      - mongo
+volumes:
+  db_volume:
