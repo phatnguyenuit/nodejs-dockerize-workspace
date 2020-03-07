@@ -33,5 +33,7 @@ services:
       - DB_HOST=mongo
     links:
       - mongo
-volumes:
-  db_volume:
+networks:
+  default:
+    external:
+      name: bridge
